@@ -20,7 +20,7 @@
             <nav class="flex justify-between h-[75px] items-center">
                 <a href="#" class="logo text-[28px] font-semibold text-white ms-4 md:ms-0">Themovies.app</a>
 
-                <input type="text" placeholder="Enter name" class="p-3 hidden md:block w-[300px] md:w-[400px] lg:w-[600px] rounded-xl outline-none">
+                <input id="global_search" type="text" placeholder="Enter name" class="p-3 hidden md:block w-[300px] md:w-[400px] lg:w-[600px] rounded-xl outline-none">
 
                 <select id="them" class="p-3 rounded-xl w-[150px] hidden lg:block">
                     <option value="light">Light</option>
@@ -37,22 +37,25 @@
         <section id="films">
             <div class="container mx-auto px-5">
                 <div class="wrapper flex">
-                    <aside class="bg-blue-100 p-4 w-1/4">
-                        <form action="#" method="POST">
-                            <label for="title" class="w-[320px]">
+                    <aside class="bg-white shadow-2xl p-4 w-1/4">
+                        <form action="#">
+                            <label for="title" class="w-full">
                                 <p class="mb-2">Enter film title</p>
                                 <input type="text" id="title" class="w-full border p-2 mb-4 outline-none">
                             </label>
-                            <label for="rating" class="w-[320px]">
+                            <label for="rating" class="w-full">
                                 <p class="mb-2">Enter film rating</p>
-                                <input type="text" id="rating" class="w-full border p-2 mb-4 outline-none">
+                                <input type="number" min="1" max="10" value="1" id="rating" class="w-full border p-2 mb-4 outline-none">
                             </label>
                             <p class="mt-4 mb-2">Select film category</p>
-                            <select id="category" class="w-[350px] p-2 border outline-none">
-                                <option selected disabled>Select film category</option>
+                            <select id="category" class="w-full p-2 border outline-none ">
+                                <option selected disabled value="">Select film category</option>
                             </select>
-                            <button type="submit" class="bg-red-500 text-white px-3 my-6 focus:ring-4 ring-green-600 w-full py-2">Search</button>
+                            <button type="submit" id="search_btn" class="bg-red-500 text-white px-3 my-6 focus:ring-4 ring-green-600 w-full py-2">Search</button>
                         </form>
+                        <div class="p-4 bg-lime-400 hidden" id="res_block">
+                            <span id="res"></span> <small>ta Natija topildi</small>
+                        </div>
                     </aside>
                     <div class="film-wrapper bg-lime-200 p-4 w-3/4 grid grid-cols-3 gap-3">
                        

@@ -27,6 +27,7 @@ const allMovies = movies.map((el) => {
 
 function renderAllMovies(data){
     if(data.length){
+        $('#res').textContent = data.length;
         data.forEach((e) => {
 
             const div = createElement('div', 'card bg-white shadow w-[290px] rounded-lg overflow-hidden', `
@@ -50,8 +51,74 @@ function renderAllMovies(data){
 
             $(".film-wrapper").append(div);
         })
+    }else {
+        $(".film-wrapper").innerHTML = "<h1 class='text-2xl text-red-500'>Sorry! The film is not available!</h1>"
     }
 }
 
 renderAllMovies(allMovies)
 
+
+
+/////////////  Render all categories  ////////////////////////
+
+let category = [];
+function getCategory(data){
+    if(data.length > 0){
+        data.forEach((el) => {
+            el.categories.forEach((item) => {
+                category.push(item)
+            })
+        })
+    }
+}
+
+getCategory(allMovies)
+const uniqueCategory = Array.from(new Set(category));
+
+uniqueCategory.sort().forEach((el) => {
+    let option = createElement('option', 'item', el);
+    $("#category").append(option)
+})
+
+/////////////  Global search  ////////////////////////
+
+$('#global_search').addEventListener('keyup', (e) => {
+    $('#res_block').classList.remove('hidden');
+    $(".film-wrapper").innerHTML = "";
+
+    if(!e.target.value.length){
+        $('#res_block').classList.add('hidden');
+    }
+    const filterFilm = allMovies.filter((item) => {
+        return item.title.toLowerCase().includes(e.target.value.toLowerCase())
+    })
+
+    renderAllMovies(filterFilm);
+})
+
+/////////////  Filter search  ////////////////////////
+
+function findMovies(title, rating, category){
+
+    if(!(title || rating || category)){
+        $('#res_block').classList.add('hidden');
+    }
+    
+    const filterFilm = allMovies.filter((item) => {
+        return item.title.toLowerCase().includes(title.toLowerCase()) && item.rating >= rating && item.categories.includes(category);
+    })
+
+   
+    renderAllMovies(filterFilm)
+}
+
+$('#search_btn').addEventListener('click', () => {
+    
+    $(".film-wrapper").innerHTML = "";
+    const searchStr = $('#title').value;
+    const rating = $('#rating').value;
+    const category = $('#category').value;
+
+    findMovies(searchStr, rating, category);
+})
