@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,13 +15,31 @@
     <link rel="stylesheet" href="/dist/output.css">
     <link rel="stylesheet" href="./style.css">
 </head>
-<body>
+
+<body class="overflow-x-hidden">
+
+    <div class="wrapper-modal hidden grid place-content-center bg-[rgba(0,0,0,0.6)] w-screen h-screen backdrop-blur-lg fixed z-30">
+        <div class="modal-content w-[1100px] h-[600px] bg-white">
+            <div class="modal-header p-3 bg-slate-400 flex justify-between">
+                <span></span> <button class="bg-white p-3 w-5 h-5 grid place-content-center" id="cancel">x</button>
+            </div>
+           <div class="modal-center">
+
+           </div>
+            <div class="modal-footer bg-slate-400 p-4 absolute bottom-[14px] min-w-[1100px]">
+                <button class="bg-red-500 px-3 py-2 text-white focus:ring-2 ring-red-200" id="close">close</button>
+            </div>
+        </div>
+    </div>
+
+
     <header class="bg-red-500">
         <div class="container mx-auto px-5">
             <nav class="flex justify-between h-[75px] items-center">
                 <a href="#" class="logo text-[28px] font-semibold text-white ms-4 md:ms-0">Themovies.app</a>
 
-                <input id="global_search" type="text" placeholder="Enter name" class="p-3 hidden md:block w-[300px] md:w-[400px] lg:w-[600px] rounded-xl outline-none">
+                <input id="global_search" type="text" placeholder="Enter name"
+                    class="p-3 hidden md:block w-[300px] md:w-[400px] lg:w-[600px] rounded-xl outline-none">
 
                 <select id="them" class="p-3 rounded-xl w-[150px] hidden lg:block">
                     <option value="light">Light</option>
@@ -45,20 +64,22 @@
                             </label>
                             <label for="rating" class="w-full">
                                 <p class="mb-2">Enter film rating</p>
-                                <input type="number" min="1" max="10" value="1" id="rating" class="w-full border p-2 mb-4 outline-none">
+                                <input type="number" min="1" max="10" value="1" id="rating"
+                                    class="w-full border p-2 mb-4 outline-none">
                             </label>
                             <p class="mt-4 mb-2">Select film category</p>
                             <select id="category" class="w-full p-2 border outline-none ">
                                 <option selected disabled value="">Select film category</option>
                             </select>
-                            <button type="submit" id="search_btn" class="bg-red-500 text-white px-3 my-6 focus:ring-4 ring-green-600 w-full py-2">Search</button>
+                            <button type="submit" id="search_btn"
+                                class="bg-red-500 text-white px-3 my-6 focus:ring-4 ring-green-600 w-full py-2">Search</button>
                         </form>
                         <div class="p-4 bg-lime-400 hidden" id="res_block">
                             <span id="res"></span> <small>ta Natija topildi</small>
                         </div>
                     </aside>
                     <div class="film-wrapper bg-lime-200 p-4 w-3/4 grid grid-cols-3 gap-3">
-                       
+
                     </div>
                 </div>
             </div>
@@ -68,4 +89,5 @@
 <script src="./js/db.js"></script>
 <script src="./js/utils.js"></script>
 <script src="./js/script.js"></script>
+
 </html>
